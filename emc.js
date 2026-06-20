@@ -15,7 +15,7 @@
     (function () {
       try {
         if (location.search.indexOf("nosplash") !== -1) return;
-        if (sessionStorage.getItem("emc-splash-seen")) return;
+        if (sessionStorage.getItem("emc-splash-seen-4")) return;
       } catch (e) { /* sessionStorage may be unavailable */ }
 
       var ov = document.createElement("div");
@@ -42,7 +42,7 @@
         ov.classList.add("emc-out");
         document.documentElement.style.overflow = "";
         document.body.style.overflow = "";
-        try { sessionStorage.setItem("emc-splash-seen", "1"); } catch (e) {}
+        try { sessionStorage.setItem("emc-splash-seen-4", "1"); } catch (e) {}
         setTimeout(function () { if (ov.parentNode) ov.parentNode.removeChild(ov); }, 460);
       }
 

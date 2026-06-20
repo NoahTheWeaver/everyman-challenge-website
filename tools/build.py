@@ -10,6 +10,9 @@ REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SRC = os.path.join(REPO, "design-src")
 OUT = REPO
 
+# Bump to force browsers past cached CSS/JS/reel images after a deploy.
+VERSION = "4"
+
 PAGES = {
     "EMC Homepage.dc.html": {
         "out": "index.html",
@@ -123,6 +126,14 @@ def transform_body(body):
     # point the "Guide Login" nav link at the demo login page
     body = re.sub(r'(<a )href="#"([^>]*?>Guide Login</a>)', r'\1href="login.html"\2', body)
 
+    # drop the confusing "The Reach" link wherever it appears (nav is regenerated
+    # separately; this clears the footer "Explore" link). The section itself stays.
+    body = re.sub(r'\s*<a\b[^>]*>The Reach</a>', '', body)
+
+    # overflow-x:hidden on the page wrapper turns it into a scroll container, which
+    # silently breaks position:sticky on the header. clip clips without that side effect.
+    body = body.replace("overflow-x:hidden", "overflow-x:clip")
+
     # mark the header so the scroll-aware shrink/reveal animation can hook in
     body = body.replace('<header style="position:sticky;', '<header class="emc-header" style="position:sticky;', 1)
 
@@ -167,6 +178,13 @@ def build(src_name, cfg):
 </body>
 </html>
 """
+    # cache-busting: version the files that change between deploys
+    v = f"?v={VERSION}"
+    doc = doc.replace('href="styles.css"', f'href="styles.css{v}"')
+    doc = doc.replace('href="responsive.css"', f'href="responsive.css{v}"')
+    doc = doc.replace('src="emc.js"', f'src="emc.js{v}"')
+    doc = re.sub(r'src="(assets/reel-\d+\.jpg)"', rf'src="\1{v}"', doc)
+
     with open(os.path.join(OUT, cfg["out"]), "w") as f:
         f.write(doc)
     print(f"wrote {cfg['out']} ({len(doc)} bytes)")
