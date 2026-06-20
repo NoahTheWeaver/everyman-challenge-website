@@ -38,43 +38,22 @@ img.emc-img-missing {
 }
 
 /* ---------------------------------------------------------------------------
-   Scroll-aware sticky header.
-   The header is already position:sticky; these rules add a tasteful response
-   to scrolling — it compacts, gains a soft shadow + translucent blur, and
-   slides out of the way on scroll-down / back in on scroll-up. emc.js toggles
-   the .emc-scrolled and .emc-hidden classes.
+   Sticky header. It stays pinned at all times. The only scroll response is a
+   subtle shadow that fades in once the page is scrolled — no resizing, no
+   blur, no hide-on-scroll. Kept deliberately quiet. emc.js toggles .emc-scrolled.
    --------------------------------------------------------------------------- */
 .emc-header {
-  transition: transform 0.38s cubic-bezier(0.4, 0, 0.2, 1),
-              background-color 0.3s ease, box-shadow 0.3s ease,
-              border-color 0.3s ease;
-  will-change: transform;
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
 }
-.emc-header > div { transition: padding 0.28s ease; }
-.emc-header img { transition: height 0.28s ease, width 0.28s ease; }
-
 .emc-header.emc-scrolled {
-  background-color: rgba(22, 18, 13, 0.82) !important;
-  -webkit-backdrop-filter: saturate(140%) blur(12px);
-  backdrop-filter: saturate(140%) blur(12px);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.38);
-  border-bottom-color: rgba(246, 238, 225, 0.06) !important;
+  box-shadow: 0 6px 22px rgba(0, 0, 0, 0.30);
+  border-bottom-color: rgba(246, 238, 225, 0.16) !important;
 }
-.emc-header.emc-scrolled > div {
-  padding-top: 9px !important;
-  padding-bottom: 9px !important;
-}
-.emc-header.emc-scrolled img { height: 38px !important; width: 38px !important; }
-
-.emc-header.emc-hidden { transform: translateY(-100%); }
 
 /* Honor reduced-motion preferences for the story rail / smooth scroll. */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .emc-header,
-  .emc-header > div,
-  .emc-header img { transition: none !important; }
-  .emc-header.emc-hidden { transform: none !important; }
+  .emc-header { transition: none !important; }
 }
 
 /* ---------------------------------------------------------------------------

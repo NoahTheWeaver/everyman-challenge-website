@@ -78,24 +78,14 @@
       btn.addEventListener("click", function () {
         var nav = document.querySelector(".emc-nav");
         if (nav) nav.classList.toggle("open");
-        if (header) header.classList.remove("emc-hidden"); // keep header visible while menu is open
       });
     });
 
-    // --- scroll-aware header: compact on scroll, hide on scroll-down, reveal on scroll-up ---
+    // --- header stays pinned at all times; just fade in a subtle shadow once scrolled ---
     if (header) {
-      var lastY = window.scrollY || 0;
       var ticking = false;
       var update = function () {
-        var y = window.scrollY || 0;
-        header.classList.toggle("emc-scrolled", y > 8);
-        var menuOpen = document.querySelector(".emc-nav.open");
-        if (!menuOpen && y > 140 && y > lastY + 4) {
-          header.classList.add("emc-hidden");        // scrolling down, past the fold
-        } else if (y < lastY - 4 || y <= 140) {
-          header.classList.remove("emc-hidden");      // scrolling up, or near the top
-        }
-        lastY = y;
+        header.classList.toggle("emc-scrolled", (window.scrollY || 0) > 8);
         ticking = false;
       };
       window.addEventListener("scroll", function () {

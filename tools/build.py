@@ -11,7 +11,7 @@ SRC = os.path.join(REPO, "design-src")
 OUT = REPO
 
 # Bump to force browsers past cached CSS/JS/reel images after a deploy.
-VERSION = "4"
+VERSION = "5"
 
 PAGES = {
     "EMC Homepage.dc.html": {
