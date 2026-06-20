@@ -1,0 +1,45 @@
+/* The Everyman Challenge — shared styles.
+   Per-page base styles (colors, fonts, nav, rail, form focus) live in each
+   page's inline <style>, carried over from the original design. This file adds
+   the image placeholder treatment and a few global helpers. */
+
+/* Placeholder for images not yet supplied (drop the real file into assets/). */
+.emc-imgslot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background:
+    repeating-linear-gradient(
+      45deg,
+      #211B14,
+      #211B14 14px,
+      #241d15 14px,
+      #241d15 28px
+    );
+  border: 1px dashed rgba(246, 238, 225, 0.18);
+  color: rgba(246, 238, 225, 0.42);
+  font-family: Oswald, sans-serif;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 11.5px;
+  line-height: 1.5;
+  padding: 18px;
+}
+.emc-imgslot span {
+  max-width: 22ch;
+}
+
+/* Hide images that fail to load so no broken-image glyph shows
+   (applied by emc.js). The dark card background remains. */
+img.emc-img-missing {
+  visibility: hidden;
+}
+
+/* Honor reduced-motion preferences for the story rail / smooth scroll. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
