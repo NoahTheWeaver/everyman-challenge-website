@@ -10,6 +10,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 <link href="https://fonts.googleapis.com/css2?family=Anton&amp;family=Oswald:wght@400;500;600;700&amp;family=Barlow:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="responsive.css">
 <style>
 *{box-sizing:border-box;}
   html,body{margin:0;padding:0;}
@@ -30,7 +31,7 @@
 <body>
 <div data-screen-label="Homepage" style="font-family:Barlow,sans-serif;background:#F6EEE1;color:#16120D;overflow-x:hidden;">
 
-  <header style="position:sticky;top:0;z-index:50;background:#16120D;border-bottom:1px solid rgba(246,238,225,.1);">
+  <header class="emc-header" style="position:sticky;top:0;z-index:50;background:#16120D;border-bottom:1px solid rgba(246,238,225,.1);">
     <div style="max-width:1200px;margin:0 auto;padding:13px 32px;display:flex;align-items:center;justify-content:space-between;gap:24px;position:relative;">
       <a href="#" style="display:flex;align-items:center;gap:12px;text-decoration:none;">
         <img src="assets/emc-logo.png" alt="Every Man Challenge" style="height:46px;width:46px;display:block;">
@@ -39,14 +40,7 @@
           <span style="font-family:Oswald,sans-serif;font-weight:500;font-size:12px;letter-spacing:.4em;color:#E8842A;">CHALLENGE</span>
         </span>
       </a>
-      <nav class="emc-nav" style="display:flex;align-items:center;gap:28px;flex-wrap:wrap;">
-        <a href="#reach" style="font-family:Oswald,sans-serif;font-weight:500;text-transform:uppercase;letter-spacing:.1em;font-size:13.5px;color:#F6EEE1;text-decoration:none;transition:color .15s;" style-hover="color:#E8842A;">The Reach</a>
-        <a href="stories.html" style="font-family:Oswald,sans-serif;font-weight:500;text-transform:uppercase;letter-spacing:.1em;font-size:13.5px;color:#F6EEE1;text-decoration:none;transition:color .15s;" style-hover="color:#E8842A;">Stories</a>
-        <a href="#why" style="font-family:Oswald,sans-serif;font-weight:500;text-transform:uppercase;letter-spacing:.1em;font-size:13.5px;color:#F6EEE1;text-decoration:none;transition:color .15s;" style-hover="color:#E8842A;">Why EMC</a>
-        <a href="media-kit.html" style="font-family:Oswald,sans-serif;font-weight:500;text-transform:uppercase;letter-spacing:.1em;font-size:13.5px;color:#F6EEE1;text-decoration:none;transition:color .15s;" style-hover="color:#E8842A;">Church Media Kit</a>
-        <a href="#" style="font-family:Oswald,sans-serif;font-weight:500;text-transform:uppercase;letter-spacing:.1em;font-size:13px;color:rgba(246,238,225,.55);text-decoration:none;transition:color .15s;" style-hover="color:#F6EEE1;">Guide Login</a>
-        <a href="#talk" style="background:#E8842A;color:#16120D;font-family:Oswald,sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:.05em;font-size:13px;text-decoration:none;padding:11px 22px;border-radius:4px;border:2px solid #E8842A;transition:all .18s ease;" style-hover="background:transparent;color:#E8842A;">Let's Talk</a>
-      </nav>
+      <nav class="emc-nav" style="display:flex;align-items:center;gap:28px;flex-wrap:wrap;"><a href="stories.html" style="font-family:Oswald,sans-serif;font-weight:500;text-transform:uppercase;letter-spacing:.1em;font-size:13.5px;color:#F6EEE1;text-decoration:none;transition:color .15s;" style-hover="color:#E8842A;">Stories</a><a href="#why" style="font-family:Oswald,sans-serif;font-weight:500;text-transform:uppercase;letter-spacing:.1em;font-size:13.5px;color:#F6EEE1;text-decoration:none;transition:color .15s;" style-hover="color:#E8842A;">Why EMC</a><a href="media-kit.html" style="font-family:Oswald,sans-serif;font-weight:500;text-transform:uppercase;letter-spacing:.1em;font-size:13.5px;color:#F6EEE1;text-decoration:none;transition:color .15s;" style-hover="color:#E8842A;">Church Media Kit</a><a href="login.html" style="font-family:Oswald,sans-serif;font-weight:500;text-transform:uppercase;letter-spacing:.1em;font-size:13.5px;color:#F6EEE1;text-decoration:none;transition:color .15s;" style-hover="color:#E8842A;">Guide Login</a><a href="#talk" style="background:#E8842A;color:#16120D;font-family:Oswald,sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:.05em;font-size:13px;text-decoration:none;padding:11px 22px;border-radius:4px;border:2px solid #E8842A;transition:all .18s ease;" style-hover="background:transparent;color:#E8842A;">Let&#39;s Talk</a></nav>
       <button class="emc-burger" data-emc="toggle-nav" aria-label="Menu" style="flex-direction:column;gap:5px;background:transparent;border:0;cursor:pointer;padding:8px;"><span style="width:24px;height:2px;background:#F6EEE1;display:block;border-radius:2px;"></span><span style="width:24px;height:2px;background:#F6EEE1;display:block;border-radius:2px;"></span><span style="width:24px;height:2px;background:#F6EEE1;display:block;border-radius:2px;"></span></button>
     </div>
   </header>

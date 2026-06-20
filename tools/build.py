@@ -1,9 +1,14 @@
 #!/usr/bin/env python3
-"""Transpile Claude Design (.dc.html) canvas files into clean standalone static HTML."""
+"""Transpile Claude Design (.dc.html) canvas files into clean standalone static HTML.
+
+Reads the design exports from ../design-src and writes the static pages to the
+repository root. Run from anywhere:  python3 tools/build.py
+"""
 import re, os, html
 
-SRC = "/tmp/emc-design/src"
-OUT = "/Users/noahweaver/sites/emc-website"
+REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+SRC = os.path.join(REPO, "design-src")
+OUT = REPO
 
 PAGES = {
     "EMC Homepage.dc.html": {
@@ -28,6 +33,33 @@ LINK_MAP = {
     "EMC Media Kit.dc.html": "media-kit.html",
     "EMC Stories.dc.html": "stories.html",
 }
+
+
+def nav_html(active, home):
+    """One canonical nav for every page. `home` is "" on the homepage and
+    "index.html" elsewhere so the in-page anchors resolve correctly."""
+    normal = ("font-family:Oswald,sans-serif;font-weight:500;text-transform:uppercase;"
+              "letter-spacing:.1em;font-size:13.5px;color:#F6EEE1;text-decoration:none;transition:color .15s;")
+    act = ("font-family:Oswald,sans-serif;font-weight:600;text-transform:uppercase;"
+           "letter-spacing:.1em;font-size:13.5px;color:#E8842A;text-decoration:none;")
+
+    def link(label, href, key):
+        if key == active:
+            return f'<a href="{href}" style="{act}">{label}</a>'
+        return f'<a href="{href}" style="{normal}" style-hover="color:#E8842A;">{label}</a>'
+
+    items = [
+        link("Stories", "stories.html", "stories"),
+        link("Why EMC", f"{home}#why", "why"),
+        link("Church Media Kit", "media-kit.html", "mediakit"),
+        link("Guide Login", "login.html", "login"),
+    ]
+    cta = (f'<a href="{home}#talk" style="background:#E8842A;color:#16120D;font-family:Oswald,sans-serif;'
+           "font-weight:600;text-transform:uppercase;letter-spacing:.05em;font-size:13px;text-decoration:none;"
+           'padding:11px 22px;border-radius:4px;border:2px solid #E8842A;transition:all .18s ease;" '
+           'style-hover="background:transparent;color:#E8842A;">Let&#39;s Talk</a>')
+    return ('<nav class="emc-nav" style="display:flex;align-items:center;gap:28px;flex-wrap:wrap;">'
+            + "".join(items) + cta + "</nav>")
 
 
 def extract_between(s, open_tag, close_tag):
@@ -88,7 +120,13 @@ def transform_body(body):
     for src, dst in LINK_MAP.items():
         body = body.replace(src, dst)
 
-    # any leftover bindings (safety): strip empty hint attrs / unknown {{ }}
+    # point the "Guide Login" nav link at the demo login page
+    body = re.sub(r'(<a )href="#"([^>]*?>Guide Login</a>)', r'\1href="login.html"\2', body)
+
+    # mark the header so the scroll-aware shrink/reveal animation can hook in
+    body = body.replace('<header style="position:sticky;', '<header class="emc-header" style="position:sticky;', 1)
+
+    # safety: strip empty hover attrs
     body = re.sub(r'\sstyle-hover=""', '', body)
     return body
 
@@ -98,6 +136,12 @@ def build(src_name, cfg):
     helmet = extract_between(raw, "<helmet>", "</helmet>")
     body = extract_between(raw, "</helmet>", "</x-dc>").strip()
     body = transform_body(body)
+
+    # replace the per-page nav with the single canonical nav
+    nav_active = {"media-kit.html": "mediakit", "stories.html": "stories"}.get(cfg["out"])
+    nav_home = "" if cfg["out"] == "index.html" else "index.html"
+    body = re.sub(r'<nav\b[^>]*>.*?</nav>',
+                  lambda m: nav_html(nav_active, nav_home), body, count=1, flags=re.S)
 
     fonts = "\n".join(get_font_links(helmet))
     helmet_style = get_helmet_style(helmet)
@@ -112,6 +156,7 @@ def build(src_name, cfg):
 <link rel="icon" type="image/png" href="assets/emc-logo.png">
 {fonts}
 <link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="responsive.css">
 <style>
 {helmet_style}
 </style>
@@ -127,5 +172,6 @@ def build(src_name, cfg):
     print(f"wrote {cfg['out']} ({len(doc)} bytes)")
 
 
-for name, cfg in PAGES.items():
-    build(name, cfg)
+if __name__ == "__main__":
+    for name, cfg in PAGES.items():
+        build(name, cfg)

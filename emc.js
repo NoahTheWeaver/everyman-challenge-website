@@ -11,6 +11,54 @@
   }
 
   ready(function () {
+    // --- prototype splash (shown once per session; append ?nosplash to skip) ---
+    (function () {
+      try {
+        if (location.search.indexOf("nosplash") !== -1) return;
+        if (sessionStorage.getItem("emc-splash-seen")) return;
+      } catch (e) { /* sessionStorage may be unavailable */ }
+
+      var ov = document.createElement("div");
+      ov.className = "emc-splash";
+      ov.setAttribute("role", "dialog");
+      ov.setAttribute("aria-modal", "true");
+      ov.setAttribute("aria-label", "Prototype notice");
+      ov.innerHTML =
+        '<div class="emc-splash-card">' +
+        '<img class="emc-splash-seal" src="assets/emc-logo.png" alt="">' +
+        '<p class="emc-splash-eyebrow">Early Prototype</p>' +
+        "<h2>Heads up — this is a work in progress</h2>" +
+        "<p>This is an early prototype exploring new messaging for The Everyman " +
+        "Challenge. Some of the copy is still placeholder, and it’s not fully " +
+        "set up for mobile yet.</p>" +
+        '<p>Spot something or have thoughts? Send feedback to Noah at ' +
+        '<a class="emc-splash-mail" href="mailto:noah@nuggetscientific.com?subject=EMC%20prototype%20feedback">' +
+        "noah@nuggetscientific.com</a>.</p>" +
+        '<button type="button" class="emc-splash-go">Take me to the website&nbsp;&nbsp;→</button>' +
+        "</div>";
+
+      function close() {
+        ov.classList.remove("emc-in");
+        ov.classList.add("emc-out");
+        document.documentElement.style.overflow = "";
+        document.body.style.overflow = "";
+        try { sessionStorage.setItem("emc-splash-seen", "1"); } catch (e) {}
+        setTimeout(function () { if (ov.parentNode) ov.parentNode.removeChild(ov); }, 460);
+      }
+
+      document.body.appendChild(ov);
+      document.documentElement.style.overflow = "hidden";
+      document.body.style.overflow = "hidden";
+      requestAnimationFrame(function () {
+        requestAnimationFrame(function () { ov.classList.add("emc-in"); });
+      });
+      ov.querySelector(".emc-splash-go").addEventListener("click", close);
+      ov.addEventListener("click", function (e) { if (e.target === ov) close(); });
+      document.addEventListener("keydown", function onKey(e) {
+        if (e.key === "Escape") { close(); document.removeEventListener("keydown", onKey); }
+      });
+    })();
+
     // --- style-hover: apply the hover style on pointer enter, restore on leave ---
     document.querySelectorAll("[style-hover]").forEach(function (el) {
       var base = el.getAttribute("style") || "";
@@ -25,12 +73,36 @@
     });
 
     // --- mobile nav toggle ---
+    var header = document.querySelector(".emc-header");
     document.querySelectorAll('[data-emc="toggle-nav"]').forEach(function (btn) {
       btn.addEventListener("click", function () {
         var nav = document.querySelector(".emc-nav");
         if (nav) nav.classList.toggle("open");
+        if (header) header.classList.remove("emc-hidden"); // keep header visible while menu is open
       });
     });
+
+    // --- scroll-aware header: compact on scroll, hide on scroll-down, reveal on scroll-up ---
+    if (header) {
+      var lastY = window.scrollY || 0;
+      var ticking = false;
+      var update = function () {
+        var y = window.scrollY || 0;
+        header.classList.toggle("emc-scrolled", y > 8);
+        var menuOpen = document.querySelector(".emc-nav.open");
+        if (!menuOpen && y > 140 && y > lastY + 4) {
+          header.classList.add("emc-hidden");        // scrolling down, past the fold
+        } else if (y < lastY - 4 || y <= 140) {
+          header.classList.remove("emc-hidden");      // scrolling up, or near the top
+        }
+        lastY = y;
+        ticking = false;
+      };
+      window.addEventListener("scroll", function () {
+        if (!ticking) { requestAnimationFrame(update); ticking = true; }
+      }, { passive: true });
+      update();
+    }
 
     // --- video: swap the poster for the (deferred) YouTube embed on click ---
     document.querySelectorAll('[data-emc="play-video"]').forEach(function (poster) {

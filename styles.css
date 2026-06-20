@@ -37,9 +37,108 @@ img.emc-img-missing {
   visibility: hidden;
 }
 
+/* ---------------------------------------------------------------------------
+   Scroll-aware sticky header.
+   The header is already position:sticky; these rules add a tasteful response
+   to scrolling — it compacts, gains a soft shadow + translucent blur, and
+   slides out of the way on scroll-down / back in on scroll-up. emc.js toggles
+   the .emc-scrolled and .emc-hidden classes.
+   --------------------------------------------------------------------------- */
+.emc-header {
+  transition: transform 0.38s cubic-bezier(0.4, 0, 0.2, 1),
+              background-color 0.3s ease, box-shadow 0.3s ease,
+              border-color 0.3s ease;
+  will-change: transform;
+}
+.emc-header > div { transition: padding 0.28s ease; }
+.emc-header img { transition: height 0.28s ease, width 0.28s ease; }
+
+.emc-header.emc-scrolled {
+  background-color: rgba(22, 18, 13, 0.82) !important;
+  -webkit-backdrop-filter: saturate(140%) blur(12px);
+  backdrop-filter: saturate(140%) blur(12px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.38);
+  border-bottom-color: rgba(246, 238, 225, 0.06) !important;
+}
+.emc-header.emc-scrolled > div {
+  padding-top: 9px !important;
+  padding-bottom: 9px !important;
+}
+.emc-header.emc-scrolled img { height: 38px !important; width: 38px !important; }
+
+.emc-header.emc-hidden { transform: translateY(-100%); }
+
 /* Honor reduced-motion preferences for the story rail / smooth scroll. */
 @media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
+  html { scroll-behavior: auto; }
+  .emc-header,
+  .emc-header > div,
+  .emc-header img { transition: none !important; }
+  .emc-header.emc-hidden { transform: none !important; }
+}
+
+/* ---------------------------------------------------------------------------
+   Prototype splash / disclaimer overlay (built by emc.js, shown once per
+   browser session; append ?nosplash to any URL to skip it).
+   --------------------------------------------------------------------------- */
+.emc-splash {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: rgba(18, 14, 10, 0.86);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+.emc-splash.emc-in { opacity: 1; }
+.emc-splash.emc-out { opacity: 0; pointer-events: none; }
+.emc-splash-card {
+  max-width: 520px;
+  width: 100%;
+  background: #211b14;
+  border: 1px solid rgba(246, 238, 225, 0.12);
+  border-radius: 14px;
+  padding: 44px 42px;
+  box-shadow: 0 40px 90px rgba(0, 0, 0, 0.6);
+  text-align: center;
+  transform: translateY(14px) scale(0.97);
+  opacity: 0;
+  transition: transform 0.45s cubic-bezier(0.2, 0.7, 0.2, 1), opacity 0.45s ease;
+}
+.emc-splash.emc-in .emc-splash-card { transform: none; opacity: 1; }
+.emc-splash-seal { width: 60px; height: 60px; display: block; margin: 0 auto 20px; }
+.emc-splash-eyebrow {
+  font-family: Oswald, sans-serif; font-weight: 600; text-transform: uppercase;
+  letter-spacing: 0.26em; font-size: 12px; color: #e8842a; margin: 0 0 14px;
+}
+.emc-splash-card h2 {
+  font-family: Anton, sans-serif; text-transform: uppercase; font-weight: 400;
+  font-size: 31px; line-height: 1.02; letter-spacing: 0.005em; color: #f6eee1; margin: 0 0 16px;
+}
+.emc-splash-card p {
+  font-family: Barlow, sans-serif; font-size: 16px; line-height: 1.6;
+  color: rgba(246, 238, 225, 0.74); margin: 0 auto 16px; max-width: 42ch;
+}
+.emc-splash-mail { color: #e8842a; text-decoration: none; font-weight: 600; }
+.emc-splash-mail:hover { color: #f6eee1; }
+.emc-splash-go {
+  display: inline-flex; align-items: center; gap: 10px; margin-top: 12px;
+  background: #e8842a; color: #16120d; font-family: Oswald, sans-serif; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.05em; font-size: 16px; padding: 16px 32px;
+  border-radius: 6px; border: 2px solid #e8842a; cursor: pointer;
+  transition: background 0.18s ease, color 0.18s ease;
+}
+.emc-splash-go:hover { background: transparent; color: #e8842a; }
+@media (max-width: 540px) {
+  .emc-splash { padding: 16px; }
+  .emc-splash-card { padding: 34px 24px; }
+  .emc-splash-card h2 { font-size: 26px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .emc-splash, .emc-splash-card { transition: none !important; }
 }

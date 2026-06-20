@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Guide Login — The Everyman Challenge</title>
+<meta name="description" content="Guide portal login for The Everyman Challenge. Guides only — request access from your Master Guide.">
+<meta name="robots" content="noindex">
+<link rel="icon" type="image/png" href="assets/emc-logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Anton&amp;family=Oswald:wght@400;500;600;700&amp;family=Barlow:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="responsive.css">
+<style>
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{background:#16120D;-webkit-font-smoothing:antialiased;}
+  ::selection{background:#E8842A;color:#16120D;}
+  .emc-login-field{width:100%;padding:14px 15px;font-family:Barlow,sans-serif;font-size:16px;color:#F6EEE1;background:#16120D;border:1.5px solid rgba(246,238,225,.18);border-radius:6px;transition:border-color .15s ease;}
+  .emc-login-field::placeholder{color:rgba(246,238,225,.4);}
+  .emc-login-field:focus{outline:none;border-color:#E8842A;}
+  .emc-burger{display:none;}
+  @media (max-width: 860px){
+    .emc-nav{display:none !important;position:absolute;top:100%;left:0;right:0;flex-direction:column !important;align-items:stretch !important;gap:0 !important;flex-wrap:nowrap !important;background:#16120D;padding:6px 0 14px !important;border-bottom:1px solid rgba(246,238,225,.12);box-shadow:0 20px 34px rgba(0,0,0,.45);}
+    .emc-nav.open{display:flex !important;}
+    .emc-nav a{padding:13px 32px !important;}
+    .emc-burger{display:flex;}
+  }
+  @media (max-width: 540px){
+    .emc-login-card{padding:32px 24px !important;}
+  }
+</style>
+</head>
+<body>
+<div data-screen-label="Guide Login" style="font-family:Barlow,sans-serif;background:#16120D;color:#F6EEE1;overflow-x:hidden;min-height:100vh;display:flex;flex-direction:column;">
+
+  <header class="emc-header" style="position:sticky;top:0;z-index:50;background:#16120D;border-bottom:1px solid rgba(246,238,225,.1);">
+    <div style="max-width:1200px;margin:0 auto;padding:13px 32px;display:flex;align-items:center;justify-content:space-between;gap:24px;position:relative;">
+      <a href="index.html" style="display:flex;align-items:center;gap:12px;text-decoration:none;">
+        <img src="assets/emc-logo.png" alt="Every Man Challenge" style="height:46px;width:46px;display:block;">
+        <span style="display:flex;flex-direction:column;line-height:.84;">
+          <span style="font-family:Anton,sans-serif;font-size:20px;letter-spacing:.02em;color:#F6EEE1;">EVERYMAN</span>
+          <span style="font-family:Oswald,sans-serif;font-weight:500;font-size:12px;letter-spacing:.4em;color:#E8842A;">CHALLENGE</span>
+        </span>
+      </a>
+      <nav class="emc-nav" style="display:flex;align-items:center;gap:28px;flex-wrap:wrap;">
+        <a href="stories.html" style="font-family:Oswald,sans-serif;font-weight:500;text-transform:uppercase;letter-spacing:.1em;font-size:13.5px;color:#F6EEE1;text-decoration:none;transition:color .15s;" style-hover="color:#E8842A;">Stories</a>
+        <a href="index.html#why" style="font-family:Oswald,sans-serif;font-weight:500;text-transform:uppercase;letter-spacing:.1em;font-size:13.5px;color:#F6EEE1;text-decoration:none;transition:color .15s;" style-hover="color:#E8842A;">Why EMC</a>
+        <a href="media-kit.html" style="font-family:Oswald,sans-serif;font-weight:500;text-transform:uppercase;letter-spacing:.1em;font-size:13.5px;color:#F6EEE1;text-decoration:none;transition:color .15s;" style-hover="color:#E8842A;">Church Media Kit</a>
+        <a href="login.html" style="font-family:Oswald,sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:.1em;font-size:13px;color:#E8842A;text-decoration:none;">Guide Login</a>
+        <a href="index.html#talk" style="background:#E8842A;color:#16120D;font-family:Oswald,sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:.05em;font-size:13px;text-decoration:none;padding:11px 22px;border-radius:4px;border:2px solid #E8842A;transition:all .18s ease;" style-hover="background:transparent;color:#E8842A;">Let's Talk</a>
+      </nav>
+      <button class="emc-burger" data-emc="toggle-nav" aria-label="Menu" style="flex-direction:column;gap:5px;background:transparent;border:0;cursor:pointer;padding:8px;"><span style="width:24px;height:2px;background:#F6EEE1;display:block;border-radius:2px;"></span><span style="width:24px;height:2px;background:#F6EEE1;display:block;border-radius:2px;"></span><span style="width:24px;height:2px;background:#F6EEE1;display:block;border-radius:2px;"></span></button>
+    </div>
+  </header>
+
+  <main data-section="login" style="position:relative;flex:1;display:flex;align-items:center;justify-content:center;overflow:hidden;padding:clamp(56px,10vw,96px) 22px;">
+    <img src="assets/emc-seal.png" alt="" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:520px;height:520px;max-width:90vw;opacity:.07;pointer-events:none;user-select:none;">
+
+    <div style="position:relative;width:100%;max-width:440px;">
+      <div data-sc="notSubmitted">
+        <div class="emc-login-card" style="background:#211B14;border:1px solid rgba(246,238,225,.1);border-radius:12px;padding:44px 40px;box-shadow:0 30px 70px rgba(0,0,0,.45);">
+          <p style="font-family:Oswald,sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:.26em;font-size:12px;color:#E8842A;margin:0 0 14px;text-align:center;">Guide Portal</p>
+          <h1 style="font-family:Anton,sans-serif;text-transform:uppercase;font-weight:400;font-size:40px;line-height:.96;letter-spacing:.005em;color:#F6EEE1;margin:0 0 10px;text-align:center;">Guide Login</h1>
+          <p style="font-family:Barlow,sans-serif;font-size:15.5px;line-height:1.5;color:rgba(246,238,225,.66);margin:0 0 30px;text-align:center;">Welcome back. Sign in to lead your braid.</p>
+
+          <form data-emc="lead-form">
+            <div style="display:flex;flex-direction:column;gap:7px;margin-bottom:18px;">
+              <label style="font-family:Oswald,sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:.08em;font-size:12px;color:rgba(246,238,225,.8);">Email</label>
+              <input type="email" required placeholder="you@church.org" autocomplete="username" class="emc-login-field">
+            </div>
+            <div style="display:flex;flex-direction:column;gap:7px;margin-bottom:14px;">
+              <label style="font-family:Oswald,sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:.08em;font-size:12px;color:rgba(246,238,225,.8);">Password</label>
+              <input type="password" required placeholder="••••••••" autocomplete="current-password" class="emc-login-field">
+            </div>
+            <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:26px;flex-wrap:wrap;">
+              <label style="display:flex;align-items:center;gap:8px;font-family:Barlow,sans-serif;font-size:14px;color:rgba(246,238,225,.72);cursor:pointer;">
+                <input type="checkbox" style="width:15px;height:15px;accent-color:#E8842A;">Remember me
+              </label>
+              <a href="#" style="font-family:Oswald,sans-serif;font-weight:500;text-transform:uppercase;letter-spacing:.06em;font-size:12px;color:#E8842A;text-decoration:none;" style-hover="color:#F6EEE1;">Forgot password?</a>
+            </div>
+            <button type="submit" style="width:100%;background:#E8842A;color:#16120D;font-family:Oswald,sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:.05em;font-size:16px;padding:16px;border-radius:6px;border:2px solid #E8842A;cursor:pointer;transition:all .18s ease;" style-hover="background:transparent;color:#E8842A;">Log In&nbsp;&nbsp;→</button>
+          </form>
+
+          <div style="display:flex;align-items:center;gap:14px;margin:26px 0 18px;">
+            <span style="flex:1;height:1px;background:rgba(246,238,225,.12);"></span>
+            <span style="font-family:Oswald,sans-serif;font-weight:500;text-transform:uppercase;letter-spacing:.16em;font-size:10.5px;color:rgba(246,238,225,.4);">Guides only</span>
+            <span style="flex:1;height:1px;background:rgba(246,238,225,.12);"></span>
+          </div>
+          <p style="font-family:Barlow,sans-serif;font-size:14px;line-height:1.5;color:rgba(246,238,225,.6);margin:0;text-align:center;">Not a Guide yet? <a href="index.html#talk" style="color:#E8842A;text-decoration:none;font-weight:600;" style-hover="color:#F6EEE1;">Request access</a> from your Master Guide.</p>
+        </div>
+        <p style="font-family:Barlow,sans-serif;font-size:12.5px;color:rgba(246,238,225,.38);margin:18px 0 0;text-align:center;">Demo page — sign-in isn't connected to a real account system yet.</p>
+      </div>
+
+      <div data-sc="submitted" style="display:none">
+        <div class="emc-login-card" style="background:#211B14;border:1px solid rgba(246,238,225,.1);border-radius:12px;padding:54px 40px;box-shadow:0 30px 70px rgba(0,0,0,.45);text-align:center;">
+          <div style="width:72px;height:72px;border-radius:50%;background:#E8842A;display:flex;align-items:center;justify-content:center;margin:0 auto 24px;">
+            <span style="font-family:Anton,sans-serif;font-size:38px;color:#16120D;line-height:1;">✓</span>
+          </div>
+          <h2 style="font-family:Anton,sans-serif;text-transform:uppercase;font-weight:400;font-size:30px;line-height:1;letter-spacing:.005em;color:#F6EEE1;margin:0 0 14px;">You're in.</h2>
+          <p style="font-family:Barlow,sans-serif;font-size:16px;line-height:1.55;color:rgba(246,238,225,.7);margin:0 auto 28px;max-width:32ch;">This is a demo, so there's no dashboard behind the door yet — but the sign-in flow works. Hook it up to your auth provider when you're ready.</p>
+          <a href="index.html" style="display:inline-flex;align-items:center;gap:10px;background:transparent;color:#F6EEE1;font-family:Oswald,sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:.05em;font-size:15px;text-decoration:none;padding:14px 28px;border-radius:6px;border:2px solid rgba(246,238,225,.3);transition:all .18s ease;" style-hover="border-color:#E8842A;color:#E8842A;">Back to Home</a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer style="background:#120E0A;color:#F6EEE1;">
+    <div style="max-width:1200px;margin:0 auto;padding:44px 32px 28px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:18px;align-items:center;">
+      <div style="display:flex;align-items:center;gap:12px;">
+        <img src="assets/emc-logo.png" alt="Every Man Challenge" style="height:40px;width:40px;display:block;">
+        <span style="display:flex;flex-direction:column;line-height:.84;">
+          <span style="font-family:Anton,sans-serif;font-size:18px;letter-spacing:.02em;color:#F6EEE1;">EVERYMAN</span>
+          <span style="font-family:Oswald,sans-serif;font-weight:500;font-size:11px;letter-spacing:.4em;color:#E8842A;">CHALLENGE</span>
+        </span>
+      </div>
+      <span style="font-family:Barlow,sans-serif;font-size:13.5px;color:rgba(246,238,225,.45);">© <span data-emc="year"></span> Every Man Challenge. All rights reserved.</span>
+    </div>
+  </footer>
+
+</div>
+<script src="emc.js"></script>
+</body>
+</html>

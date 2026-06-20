@@ -1,0 +1,117 @@
+/* ===========================================================================
+   The Everyman Challenge — mobile / responsive layer
+   ---------------------------------------------------------------------------
+   The pages carry their desktop design as inline styles, so this layer uses
+   !important to take precedence on small screens. Desktop (> 768px) is left
+   exactly as designed. Sections are targeted by their stable data-section
+   hooks so each page stays independent.
+   =========================================================================== */
+
+@media (max-width: 768px) {
+
+  /* ---- Section rhythm: tighten the generous desktop padding ------------- */
+  [data-section="trusted"] > div,
+  [data-section="uniques"] > div,
+  [data-section="watch"] > div,
+  [data-section="reach"] > div,
+  [data-section="cta"] > div,
+  [data-section="kit-hero"] > div,
+  [data-section="kit-contents"] > div,
+  [data-section="request"] > div,
+  [data-section="featured-story"] > div,
+  [data-section="more-stories"] > div,
+  [data-section="stories-hero"] > div,
+  footer > div {
+    padding-left: 22px !important;
+    padding-right: 22px !important;
+  }
+  [data-section="uniques"] > div,
+  [data-section="watch"] > div,
+  [data-section="reach"] > div,
+  [data-section="cta"] > div,
+  [data-section="kit-hero"] > div,
+  [data-section="kit-contents"] > div,
+  [data-section="request"] > div,
+  [data-section="featured-story"] > div,
+  [data-section="more-stories"] > div {
+    padding-top: 60px !important;
+    padding-bottom: 60px !important;
+  }
+  [data-section="trusted"] > div { padding-top: 40px !important; padding-bottom: 44px !important; }
+  [data-section="stories-hero"] > div { padding-top: 64px !important; padding-bottom: 56px !important; }
+  footer > div { padding-top: 52px !important; }
+
+  /* ---- HERO: bigger, readable headline; no overflow; compact height ----- */
+  [data-section="hero"] {
+    min-height: auto !important;
+    padding: clamp(72px, 15vw, 104px) 22px !important;
+  }
+  [data-section="hero"] img {           /* the EM seal watermark */
+    width: 320px !important;
+    height: 320px !important;
+  }
+  [data-section="hero"] h1 {
+    font-size: clamp(30px, 9vw, 56px) !important;
+    line-height: 0.96 !important;
+  }
+  [data-section="hero"] h1 span { white-space: normal !important; }  /* was nowrap → clipped */
+  /* stack the hero CTAs into full-width, easy-to-tap buttons */
+  [data-section="hero"] > div > div:last-child {
+    flex-direction: column !important;
+    align-items: stretch !important;
+  }
+  [data-section="hero"] > div > div:last-child > a {
+    width: 100% !important;
+    justify-content: center !important;
+  }
+
+  /* ---- TRUSTED logo stripe: even, centered rows (was space-between) ----- */
+  [data-section="trusted"] > div > div {
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 20px 30px !important;
+  }
+  [data-section="trusted"] img { height: 38px !important; }
+  [data-section="trusted"] a[href="#talk"] { padding: 9px 22px !important; }
+
+  /* ---- "Men's program" / uniques: one clean column --------------------- */
+  [data-section="uniques"] > div > div { gap: 16px !important; }
+  [data-section="uniques"] > div > div > div {
+    flex: 1 1 100% !important;
+    padding: 26px !important;
+  }
+
+  /* ---- WATCH: keep the video poster a sensible height ------------------- */
+  [data-section="watch"] [style*="min-height:460px"] { min-height: 230px !important; }
+
+  /* ---- Forms: trim padding so fields aren't cramped -------------------- */
+  [data-section="cta"] form,
+  [data-section="request"] form,
+  [data-section="cta"] [data-sc="ctaSubmitted"] > div,
+  [data-section="request"] [data-sc="submitted"] > div { padding: 26px !important; }
+
+  /* ---- MEDIA KIT hero: keep the floating badge on-screen --------------- */
+  [data-section="kit-hero"] [style*="left:-18px"] { left: 6px !important; right: auto !important; }
+
+  /* ---- STORIES: shorter featured portrait on phones -------------------- */
+  [data-section="featured-story"] [style*="min-height:520px"] { min-height: 360px !important; }
+
+  /* ---- GUIDE LOGIN: block layout so the card never exceeds the viewport - */
+  [data-section="login"] {
+    display: block !important;
+    padding-left: 18px !important;
+    padding-right: 18px !important;
+  }
+  [data-section="login"] > div {
+    max-width: 420px !important;
+    width: 100% !important;
+    margin: 0 auto !important;
+  }
+}
+
+@media (max-width: 480px) {
+  [data-section="hero"] img { width: 260px !important; height: 260px !important; }
+  [data-section="trusted"] img { height: 32px !important; }
+  /* reach map: shrink the state labels so 2-letter codes never clip */
+  [data-section="reach"] [style*="repeat(11"] > div { font-size: 9px !important; }
+}

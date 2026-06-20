@@ -10,6 +10,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@400;500;600;700&family=Barlow:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="responsive.css">
 <style>
 *{box-sizing:border-box;}
   html,body{margin:0;padding:0;}
@@ -22,7 +23,7 @@
 <body>
 <div data-screen-label="Media Kit" style="font-family:Barlow,sans-serif;background:#F6EEE1;color:#16120D;overflow-x:hidden;">
 
-  <header style="position:sticky;top:0;z-index:50;background:#16120D;border-bottom:1px solid rgba(246,238,225,.1);">
+  <header class="emc-header" style="position:sticky;top:0;z-index:50;background:#16120D;border-bottom:1px solid rgba(246,238,225,.1);">
     <div style="max-width:1200px;margin:0 auto;padding:13px 32px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;">
       <a href="index.html" style="display:flex;align-items:center;gap:12px;text-decoration:none;">
         <img src="assets/emc-logo.png" alt="Every Man Challenge" style="height:46px;width:46px;display:block;">
@@ -31,14 +32,7 @@
           <span style="font-family:Oswald,sans-serif;font-weight:500;font-size:12px;letter-spacing:.4em;color:#E8842A;">CHALLENGE</span>
         </span>
       </a>
-      <nav style="display:flex;align-items:center;gap:28px;flex-wrap:wrap;">
-        <a href="index.html#reach" style="font-family:Oswald,sans-serif;font-weight:500;text-transform:uppercase;letter-spacing:.1em;font-size:13.5px;color:#F6EEE1;text-decoration:none;transition:color .15s;" style-hover="color:#E8842A;">The Reach</a>
-        <a href="stories.html" style="font-family:Oswald,sans-serif;font-weight:500;text-transform:uppercase;letter-spacing:.1em;font-size:13.5px;color:#F6EEE1;text-decoration:none;transition:color .15s;" style-hover="color:#E8842A;">Stories</a>
-        <a href="index.html#why" style="font-family:Oswald,sans-serif;font-weight:500;text-transform:uppercase;letter-spacing:.1em;font-size:13.5px;color:#F6EEE1;text-decoration:none;transition:color .15s;" style-hover="color:#E8842A;">Why EMC</a>
-        <a href="media-kit.html" style="font-family:Oswald,sans-serif;font-weight:500;text-transform:uppercase;letter-spacing:.1em;font-size:13.5px;color:#E8842A;text-decoration:none;">Church Media Kit</a>
-        <a href="index.html#pastors" style="font-family:Oswald,sans-serif;font-weight:500;text-transform:uppercase;letter-spacing:.1em;font-size:13.5px;color:#F6EEE1;text-decoration:none;transition:color .15s;" style-hover="color:#E8842A;">For Pastors</a>
-        <a href="#request" style="background:#E8842A;color:#16120D;font-family:Oswald,sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:.05em;font-size:13px;text-decoration:none;padding:11px 22px;border-radius:4px;border:2px solid #E8842A;transition:all .18s ease;" style-hover="background:transparent;color:#E8842A;">Request It</a>
-      </nav>
+      <nav class="emc-nav" style="display:flex;align-items:center;gap:28px;flex-wrap:wrap;"><a href="stories.html" style="font-family:Oswald,sans-serif;font-weight:500;text-transform:uppercase;letter-spacing:.1em;font-size:13.5px;color:#F6EEE1;text-decoration:none;transition:color .15s;" style-hover="color:#E8842A;">Stories</a><a href="index.html#why" style="font-family:Oswald,sans-serif;font-weight:500;text-transform:uppercase;letter-spacing:.1em;font-size:13.5px;color:#F6EEE1;text-decoration:none;transition:color .15s;" style-hover="color:#E8842A;">Why EMC</a><a href="media-kit.html" style="font-family:Oswald,sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:.1em;font-size:13.5px;color:#E8842A;text-decoration:none;">Church Media Kit</a><a href="login.html" style="font-family:Oswald,sans-serif;font-weight:500;text-transform:uppercase;letter-spacing:.1em;font-size:13.5px;color:#F6EEE1;text-decoration:none;transition:color .15s;" style-hover="color:#E8842A;">Guide Login</a><a href="index.html#talk" style="background:#E8842A;color:#16120D;font-family:Oswald,sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:.05em;font-size:13px;text-decoration:none;padding:11px 22px;border-radius:4px;border:2px solid #E8842A;transition:all .18s ease;" style-hover="background:transparent;color:#E8842A;">Let&#39;s Talk</a></nav>
     </div>
   </header>
 
