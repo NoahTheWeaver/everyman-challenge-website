@@ -94,16 +94,22 @@
       update();
     }
 
-    // --- video: swap the poster for the (deferred) YouTube embed on click ---
+    // --- video posters (Watch film + the founder letter): swap to the deferred embed ---
+    // Works for any "<x>NotPlaying" / "<x>Playing" sc pair (notPlaying/playing,
+    // letterNotPlaying/letterPlaying, ...).
     document.querySelectorAll('[data-emc="play-video"]').forEach(function (poster) {
       poster.addEventListener("click", function () {
-        var notPlaying = poster.closest('[data-sc="notPlaying"]');
-        var container = notPlaying ? notPlaying.parentElement : poster.closest("section");
+        var notWrap = poster.closest("[data-sc]");
+        var container = notWrap ? notWrap.parentElement : poster.closest("section");
         if (!container) return;
-        var playing = container.querySelector('[data-sc="playing"]');
+        var playing = null;
+        container.querySelectorAll("[data-sc]").forEach(function (el) {
+          var v = el.getAttribute("data-sc") || "";
+          if (/playing$/i.test(v) && !/notplaying$/i.test(v)) playing = el;
+        });
         var iframe = playing && playing.querySelector("iframe");
         if (iframe && iframe.dataset.src && !iframe.src) iframe.src = iframe.dataset.src;
-        if (notPlaying) notPlaying.style.display = "none";
+        if (notWrap) notWrap.style.display = "none";
         if (playing) playing.style.display = "block";
       });
     });

@@ -11,7 +11,7 @@ SRC = os.path.join(REPO, "design-src")
 OUT = REPO
 
 # Bump to force browsers past cached CSS/JS/reel images after a deploy.
-VERSION = "5"
+VERSION = "6"
 
 PAGES = {
     "EMC Homepage.dc.html": {
@@ -105,6 +105,7 @@ def transform_body(body):
     body = body.replace('class="{{ navClass }}"', 'class="emc-nav"')
     body = body.replace('onClick="{{ toggleMenu }}"', 'data-emc="toggle-nav"')
     body = body.replace('onClick="{{ playVideo }}"', 'data-emc="play-video"')
+    body = body.replace('onClick="{{ playLetterVideo }}"', 'data-emc="play-video"')
     body = body.replace('onClick="{{ railPrev }}"', 'data-emc="rail-prev"')
     body = body.replace('onClick="{{ railNext }}"', 'data-emc="rail-next"')
     body = body.replace('ref="{{ railRef }}"', 'data-emc="rail-track"')

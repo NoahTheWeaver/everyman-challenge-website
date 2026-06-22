@@ -10,7 +10,7 @@
 <helmet>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-<link href="https://fonts.googleapis.com/css2?family=Anton&amp;family=Oswald:wght@400;500;600;700&amp;family=Barlow:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Anton&amp;family=Oswald:wght@400;500;600;700&amp;family=Barlow:wght@300;400;500;600;700&amp;family=Caveat:wght@600&amp;display=swap" rel="stylesheet">
 <script src="./image-slot.js"></script>
 <style>
   *{box-sizing:border-box;}
@@ -122,37 +122,43 @@
     </div>
   </section>
 
-  
-
-  <section id="why" data-section="uniques" style="background:#16120D;color:#F6EEE1;">
+  <section data-section="letter" data-screen-label="Letter" style="background:#16120D;color:#F6EEE1;">
     <div style="max-width:1200px;margin:0 auto;padding:96px 32px;">
-      <p style="font-family:Oswald,sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:.24em;font-size:14px;color:#E8842A;margin:0 0 16px;">What Makes It Different</p>
-      <h2 style="font-family:Anton,sans-serif;text-transform:uppercase;font-weight:400;font-size:clamp(32px,4.4vw,58px);line-height:.96;letter-spacing:.005em;color:#F6EEE1;margin:0 0 22px;max-width:24ch;">BECAUSE YOU DON'T NEED ANOTHER "MEN'S PROGRAM"...</h2>
-      <p style="font-family:Barlow,sans-serif;font-size:19px;line-height:1.6;color:rgba(246,238,225,.74);max-width:62ch;margin:0 0 50px;">...the Everyman Challenge is built different — not one more thing for you to manage, but a guided path that turns the men already sitting in your pews into disciples who make disciples.</p>
-      <div style="display:flex;flex-wrap:wrap;gap:20px;">
-        <div style="flex:1 1 150px;background:#211B14;border:1px solid rgba(246,238,225,.08);border-radius:8px;padding:30px;">
-          <div style="width:46px;height:5px;background:#E8842A;margin-bottom:24px;"></div>
-          <h3 style="font-family:Oswald,sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:.04em;font-size:19px;color:#F6EEE1;margin:0 0 12px;">Built for churches</h3>
-          <p style="font-family:Barlow,sans-serif;font-size:15.5px;line-height:1.58;color:rgba(246,238,225,.72);margin:0;">It's built for the local church — not a parachurch program your men do on the side. The Every Man Challenge plugs into your ministry and strengthens it from the inside out.</p>
+      <div style="text-align:center;margin:0 0 56px;">
+        <p style="font-family:Oswald,sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:.24em;font-size:14px;color:#E8842A;margin:0 0 16px;">For Pastors &amp; Church Leaders</p>
+        <h2 style="font-family:Anton,sans-serif;text-transform:uppercase;font-weight:400;font-size:clamp(30px,4.2vw,56px);line-height:.98;letter-spacing:.005em;color:#F6EEE1;margin:0 auto;max-width:24ch;">Brothers, Don't Let Brothers Settle With "Fine"</h2>
+      </div>
+
+      <div style="display:flex;flex-wrap:wrap;gap:clamp(40px,5vw,72px);align-items:center;">
+        <div style="flex:1 1 420px;">
+          <div style="position:relative;border-radius:10px;overflow:hidden;box-shadow:0 24px 60px rgba(22,18,13,.22);border:1px solid rgba(22,18,13,.1);aspect-ratio:16/9;background:#000;">
+            <sc-if value="{{ letterNotPlaying }}" hint-placeholder-val="{{ true }}">
+              <div onClick="{{ playLetterVideo }}" style="position:absolute;inset:0;cursor:pointer;">
+                <img src="assets/letter-ben-still.jpg" alt="Ben Steiger" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
+                <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(22,18,13,.05),rgba(22,18,13,.4));pointer-events:none;"></div>
+                <div style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:78px;height:78px;border-radius:50%;background:rgba(232,132,42,.95);display:flex;align-items:center;justify-content:center;box-shadow:0 10px 30px rgba(0,0,0,.4);">
+                  <span style="display:block;width:0;height:0;border-style:solid;border-width:14px 0 14px 24px;border-color:transparent transparent transparent #16120D;margin-left:5px;"></span>
+                </div>
+              </div>
+            </sc-if>
+            <sc-if value="{{ letterPlaying }}" hint-placeholder-val="{{ false }}">
+              <iframe src="https://www.youtube.com/embed/XCLp4nWVKbA?rel=0&amp;autoplay=1" title="A letter from Ben Steiger" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" style="position:absolute;inset:0;width:100%;height:100%;border:0;"></iframe>
+            </sc-if>
+          </div>
+          <p style="font-family:Oswald,sans-serif;font-weight:500;text-transform:uppercase;letter-spacing:.16em;font-size:11.5px;color:rgba(246,238,225,.45);margin:16px 0 0;text-align:center;">A word from our founder</p>
         </div>
-        <div style="flex:1 1 150px;background:#211B14;border:1px solid rgba(246,238,225,.08);border-radius:8px;padding:30px;">
-          <div style="width:46px;height:5px;background:#E8842A;margin-bottom:24px;"></div>
-          <h3 style="font-family:Oswald,sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:.04em;font-size:19px;color:#F6EEE1;margin:0 0 12px;">Your men lead your men</h3>
-          <p style="font-family:Barlow,sans-serif;font-size:15.5px;line-height:1.58;color:rgba(246,238,225,.72);margin:0;">No celebrity speaker. No new staff hire. You identify the leaders already in your pews; we train them as Guides to lead groups of 12–15 men, shoulder to shoulder.</p>
-        </div>
-        <div style="flex:1 1 150px;background:#211B14;border:1px solid rgba(246,238,225,.08);border-radius:8px;padding:30px;">
-          <div style="width:46px;height:5px;background:#E8842A;margin-bottom:24px;"></div>
-          <h3 style="font-family:Oswald,sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:.04em;font-size:19px;color:#F6EEE1;margin:0 0 12px;">Designed to multiply</h3>
-          <p style="font-family:Barlow,sans-serif;font-size:15.5px;line-height:1.58;color:rgba(246,238,225,.72);margin:0;">Every man who finishes is equipped to lead the next group. One group becomes two, two become four — disciples who make disciples, without adding to your plate.</p>
-        </div>
-        <div style="flex:1 1 150px;background:#211B14;border:1px solid rgba(246,238,225,.08);border-radius:8px;padding:30px;">
-          <div style="width:46px;height:5px;background:#E8842A;margin-bottom:24px;"></div>
-          <h3 style="font-family:Oswald,sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:.04em;font-size:19px;color:#F6EEE1;margin:0 0 12px;">A path, not an event</h3>
-          <p style="font-family:Barlow,sans-serif;font-size:15.5px;line-height:1.58;color:rgba(246,238,225,.72);margin:0;">Six months of sustained discipleship — brotherhood, scripture, prayer, and family leadership — replaces the weekend high that fades by Monday.</p>
+
+        <div style="flex:1 1 380px;">
+          <p style="font-family:Barlow,sans-serif;font-size:19px;line-height:1.66;color:rgba(246,238,225,.82);margin:0 0 22px;">Brothers — we built The Everyman Challenge for leaders who aren't satisfied with "good enough." The one-time events… the same older guys, same breakfast, same fishing trip… the good men you'd love to develop but never have the bandwidth to.</p>
+          <p style="font-family:Barlow,sans-serif;font-size:19px;line-height:1.66;color:rgba(246,238,225,.82);margin:0 0 36px;">There's a better way to grow your men — from the inside out. That's why this was built… and I can't wait to share it with you.</p>
+          <p style="font-family:Caveat,cursive;font-size:52px;line-height:.8;color:#E8842A;margin:0 0 10px;">Ben Steiger</p>
+          <p style="font-family:Oswald,sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:.12em;font-size:12.5px;color:rgba(246,238,225,.55);margin:0;">President &amp; Creator of The Everyman Challenge</p>
         </div>
       </div>
     </div>
   </section>
+
+  
 
   <section id="watch" data-section="watch" style="background:#F6EEE1;color:#16120D;">
     <div style="max-width:1200px;margin:0 auto;padding:96px 32px;">
@@ -236,6 +242,36 @@
           </div>
         </div>
       </sc-if>
+    </div>
+  </section>
+
+  <section id="why" data-section="uniques" style="background:#211B14;color:#F6EEE1;">
+    <div style="max-width:1200px;margin:0 auto;padding:96px 32px;">
+      <p style="font-family:Oswald,sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:.24em;font-size:14px;color:#E8842A;margin:0 0 16px;">What Makes It Different</p>
+      <h2 style="font-family:Anton,sans-serif;text-transform:uppercase;font-weight:400;font-size:clamp(32px,4.4vw,58px);line-height:.96;letter-spacing:.005em;color:#F6EEE1;margin:0 0 22px;max-width:24ch;">BECAUSE YOU DON'T NEED ANOTHER "MEN'S PROGRAM"...</h2>
+      <p style="font-family:Barlow,sans-serif;font-size:19px;line-height:1.6;color:rgba(246,238,225,.74);max-width:62ch;margin:0 0 50px;">...the Everyman Challenge is built different — not one more thing for you to manage, but a guided path that turns the men already sitting in your pews into disciples who make disciples.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:20px;">
+        <div style="flex:1 1 150px;background:#16120D;border:1px solid rgba(246,238,225,.08);border-radius:8px;padding:30px;">
+          <div style="width:46px;height:5px;background:#E8842A;margin-bottom:24px;"></div>
+          <h3 style="font-family:Oswald,sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:.04em;font-size:19px;color:#F6EEE1;margin:0 0 12px;">Built for churches</h3>
+          <p style="font-family:Barlow,sans-serif;font-size:15.5px;line-height:1.58;color:rgba(246,238,225,.72);margin:0;">It's built for the local church — not a parachurch program your men do on the side. The Every Man Challenge plugs into your ministry and strengthens it from the inside out.</p>
+        </div>
+        <div style="flex:1 1 150px;background:#16120D;border:1px solid rgba(246,238,225,.08);border-radius:8px;padding:30px;">
+          <div style="width:46px;height:5px;background:#E8842A;margin-bottom:24px;"></div>
+          <h3 style="font-family:Oswald,sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:.04em;font-size:19px;color:#F6EEE1;margin:0 0 12px;">Your men lead your men</h3>
+          <p style="font-family:Barlow,sans-serif;font-size:15.5px;line-height:1.58;color:rgba(246,238,225,.72);margin:0;">No celebrity speaker. No new staff hire. You identify the leaders already in your pews; we train them as Guides to lead groups of 12–15 men, shoulder to shoulder.</p>
+        </div>
+        <div style="flex:1 1 150px;background:#16120D;border:1px solid rgba(246,238,225,.08);border-radius:8px;padding:30px;">
+          <div style="width:46px;height:5px;background:#E8842A;margin-bottom:24px;"></div>
+          <h3 style="font-family:Oswald,sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:.04em;font-size:19px;color:#F6EEE1;margin:0 0 12px;">Designed to multiply</h3>
+          <p style="font-family:Barlow,sans-serif;font-size:15.5px;line-height:1.58;color:rgba(246,238,225,.72);margin:0;">Every man who finishes is equipped to lead the next group. One group becomes two, two become four — disciples who make disciples, without adding to your plate.</p>
+        </div>
+        <div style="flex:1 1 150px;background:#16120D;border:1px solid rgba(246,238,225,.08);border-radius:8px;padding:30px;">
+          <div style="width:46px;height:5px;background:#E8842A;margin-bottom:24px;"></div>
+          <h3 style="font-family:Oswald,sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:.04em;font-size:19px;color:#F6EEE1;margin:0 0 12px;">A path, not an event</h3>
+          <p style="font-family:Barlow,sans-serif;font-size:15.5px;line-height:1.58;color:rgba(246,238,225,.72);margin:0;">Six months of sustained discipleship — brotherhood, scripture, prayer, and family leadership — replaces the weekend high that fades by Monday.</p>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -434,13 +470,16 @@
 }">
 class Component extends DCLogic {
   rail = React.createRef();
-  state = { playing: false, ctaSubmitted: false, menuOpen: false };
+  state = { playing: false, letterPlaying: false, ctaSubmitted: false, menuOpen: false };
   renderVals() {
     const variant = this.props.heroVariant ?? 'Summit';
     return {
       playing: this.state.playing,
       notPlaying: !this.state.playing,
       playVideo: () => this.setState({ playing: true }),
+      letterPlaying: this.state.letterPlaying,
+      letterNotPlaying: !this.state.letterPlaying,
+      playLetterVideo: () => this.setState({ letterPlaying: true }),
       ctaSubmitted: this.state.ctaSubmitted,
       ctaNotSubmitted: !this.state.ctaSubmitted,
       ctaSubmit: (e) => { e.preventDefault(); this.setState({ ctaSubmitted: true }); },

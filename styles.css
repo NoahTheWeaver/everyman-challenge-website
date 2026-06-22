@@ -3,6 +3,18 @@
    page's inline <style>, carried over from the original design. This file adds
    the image placeholder treatment and a few global helpers. */
 
+/* Hero presence — tuned up a touch to match the Claude Design canvas on
+   desktop (bigger headline + seal badge). The mobile layer in responsive.css
+   loads after this file and overrides these at <=768px. */
+[data-section="hero"] h1 {
+  font-size: clamp(30px, 6.8vw, 96px) !important;
+}
+[data-section="hero"] img {
+  width: 560px !important;
+  height: 560px !important;
+  max-width: 90vw !important;
+}
+
 /* Placeholder for images not yet supplied (drop the real file into assets/). */
 .emc-imgslot {
   display: flex;
