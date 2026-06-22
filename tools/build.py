@@ -11,7 +11,7 @@ SRC = os.path.join(REPO, "design-src")
 OUT = REPO
 
 # Bump to force browsers past cached CSS/JS/reel images after a deploy.
-VERSION = "6"
+VERSION = "7"
 
 PAGES = {
     "EMC Homepage.dc.html": {
@@ -116,6 +116,10 @@ def transform_body(body):
     # defer youtube iframe load until play
     body = body.replace('<iframe src="https://www.youtube.com/embed/',
                         '<iframe data-src="https://www.youtube.com/embed/')
+
+    # use Ben's real signature image (tinted via .ben-signature) instead of Caveat text
+    body = re.sub(r'<p style="font-family:Caveat[^"]*"[^>]*>Ben Steiger</p>',
+                  '<span class="ben-signature" role="img" aria-label="Ben Steiger"></span>', body)
 
     # image-slot custom element -> placeholder div
     body = re.sub(r'<image-slot\s+([^>]*?)>\s*</image-slot>', convert_image_slot, body, flags=re.S)

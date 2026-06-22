@@ -15,6 +15,18 @@
   max-width: 90vw !important;
 }
 
+/* Ben's handwritten signature — a black-on-transparent PNG tinted to brand
+   orange via a CSS mask, replacing the Caveat text in the letter section. */
+.ben-signature {
+  display: block;
+  width: 250px;
+  aspect-ratio: 1024 / 375;
+  margin: 0 0 10px;
+  background-color: #e8842a;
+  -webkit-mask: url("assets/ben-signature.png") no-repeat left center / contain;
+  mask: url("assets/ben-signature.png") no-repeat left center / contain;
+}
+
 /* Placeholder for images not yet supplied (drop the real file into assets/). */
 .emc-imgslot {
   display: flex;
